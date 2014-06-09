@@ -66,6 +66,16 @@ class LogStash::Inputs::File < LogStash::Inputs::Base
   # has no effect.
   config :start_position, :validate => [ "beginning", "end"], :default => "end"
 
+  
+  # In some cases (EG when following files that are being rsync'd) the default
+  # filewatch/tail approach of following a file by inode will not work well 
+  # because each update to a file will give it a new inode.  To support this
+  # scenario, we can use this flag to disable the normal inode based following  
+  # strategy and and resort to tracking files by path alone.  
+  config :follow_only_path, :validate => :boolean, :default => false
+
+  
+  
   public
   def register
     require "addressable/uri"
