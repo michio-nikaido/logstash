@@ -88,6 +88,7 @@ class LogStash::Inputs::File < LogStash::Inputs::Base
       :stat_interval => @stat_interval,
       :discover_interval => @discover_interval,
       :sincedb_write_interval => @sincedb_write_interval,
+      :follow_only_path => @follow_only_path,
       :logger => @logger,
     }
 
